@@ -18,16 +18,16 @@
   under the License.
 -->
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
-           id="cordova-plugin-fcm"
+           id="cordova-plugin-fcm-reminder"
       version="2.1.1">
     <name>FCMPlugin</name>
-    <description>Cordova FCM Plugin</description>
+    <description>Cordova FCM Plugin with reminders</description>
     <license>Apache 2.0</license>
     <keywords>cordova, fcm, push, plugin</keywords>
     
     <info>
-		Cordova FCM plugin v2.1.1 installed
-		For more details visit https://github.com/fechanique/cordova-plugin-fcm
+		Cordova FCM plugin reminder v2.1.1 installed
+		For more details visit https://github.com/DKbyo/cordova-plugin-fcm
 	</info>
 	
     <js-module src="www/FCMPlugin.js" name="FCMPlugin">

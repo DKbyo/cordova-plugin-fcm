@@ -67,11 +67,44 @@ NSString *const kGCMMessageIDKey = @"gcm.message_id";
     } else {
         // iOS 8 or later
         // [START register_for_notifications]
+        UNNotificationAction* askLaterAction = [UNNotificationAction
+                                                actionWithIdentifier:@"ASKLATER_ACTION"
+                                                title:@"Ask me later"
+                                                options:UNNotificationActionOptionNone];
+        
+        UNNotificationAction* confirmAction = [UNNotificationAction
+                                               actionWithIdentifier:@"CONFIRM_ACTION"
+                                               title:@"Yes"
+                                               options:UNNotificationActionOptionNone];
+        
+        UNNotificationCategory* confirmCategory = [UNNotificationCategory
+                                                   categoryWithIdentifier:@"CONFIRM"
+                                                   actions:@[confirmAction,askLaterAction]
+                                                   intentIdentifiers:@[]
+                                                   options:UNNotificationCategoryOptionCustomDismissAction];
+        
+        UNNotificationAction* askHourAction = [UNNotificationAction
+                                               actionWithIdentifier:@"ASKHOUR_ACTION"
+                                               title:@"Ask me in a hour"
+                                               options:UNNotificationActionOptionNone];
+        UNNotificationAction* askTomorrowMorningAction = [UNNotificationAction
+                                                          actionWithIdentifier:@"ASKMORNING_ACTION"
+                                                          title:@"Ask me tomorrow morning"
+                                                          options:UNNotificationActionOptionNone];
+        UNNotificationAction* askTomorrowNightAction = [UNNotificationAction
+                                                        actionWithIdentifier:@"ASKNIGHT_ACTION"
+                                                        title:@"Ask me tomorrow night"
+                                                        options:UNNotificationActionOptionNone];
+        UNNotificationCategory* reminderCategory = [UNNotificationCategory
+                                                    categoryWithIdentifier:@"REMINDER"
+                                                    actions:@[confirmAction,askHourAction,askTomorrowMorningAction,askTomorrowNightAction]
+                                                    intentIdentifiers:@[]
+                                                    options:UNNotificationCategoryOptionCustomDismissAction];
         if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_9_x_Max) {
             UIUserNotificationType allNotificationTypes =
             (UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge);
             UIUserNotificationSettings *settings =
-            [UIUserNotificationSettings settingsForTypes:allNotificationTypes categories:nil];
+            [UIUserNotificationSettings settingsForTypes:allNotificationTypes categories:[NSSet setWithObjects:confirmCategory,reminderCategory, nil]];
             [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
         } else {
             // iOS 10 or later
@@ -80,6 +113,9 @@ NSString *const kGCMMessageIDKey = @"gcm.message_id";
             UNAuthorizationOptionAlert
             | UNAuthorizationOptionSound
             | UNAuthorizationOptionBadge;
+
+            [[UNUserNotificationCenter currentNotificationCenter] setNotificationCategories: [NSSet setWithObjects:confirmCategory,reminderCategory, nil]];
+
             [[UNUserNotificationCenter currentNotificationCenter] requestAuthorizationWithOptions:authOptions completionHandler:^(BOOL granted, NSError * _Nullable error) {
             }];
             

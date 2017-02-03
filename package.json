@@ -1,18 +1,18 @@
 {
   "version": "2.1.1",
-  "name": "cordova-plugin-fcm",
-  "cordova_name": "Cordova FCM Push Plugin",
-  "description": "Google Firebase Cloud Messaging Cordova Push Plugin",
+  "name": "cordova-plugin-fcm-reminder",
+  "cordova_name": "Cordova FCM Push Plugin with Reminders",
+  "description": "Google Firebase Cloud Messaging Cordova Push Plugin with reminder",
   "license": "MIT",
   "repo": "",
   "issue": "",
   "author": {
-    "name": "Felipe Echanique Torres",
-    "email": "felipe.echanique@gmail.com"
+    "name": "Daniel Cabello",
+    "email": "danyel.nerv@gmail.com"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/fechanique/cordova-plugin-fcm"
+    "url": "https://github.com/DKbyo/cordova-plugin-fcm"
   },
   "keywords": [
     "ecosystem:cordova",
